@@ -14,8 +14,8 @@ const sendEmail = async (req, res) => {
         console.log("HI IM HERE");
         // Email options
         const mailOptions = {
-            from: 'contact@devrisestudio.com',
-            to: 'contact@devrisestudio.com',
+            from: process.env.GOOGLE_EMAIL_ACCOUNT,
+            to: process.env.GOOGLE_EMAIL_ACCOUNT,
             subject: 'Inquiries- Hidden Gable Estate',
             text: `
                 Name: ${name}
