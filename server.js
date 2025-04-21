@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 app.use(cors({
   origin: [
       'http://localhost:5173', 
-      'https://hiddengableestate.com',
       'https://www.hiddengableestate.com',
       'https://summitlodgebigbear.com',
   ]

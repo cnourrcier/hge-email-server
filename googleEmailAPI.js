@@ -10,20 +10,19 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (req, res) => {
     try {
-        const { name, email, message } = req.body;
-        console.log("HI IM HERE");
+        const { name, email, message, website } = req.body;
         // Email options
         const mailOptions = {
             from: process.env.GOOGLE_EMAIL_ACCOUNT,
             to: process.env.GOOGLE_EMAIL_ACCOUNT,
-            subject: 'Inquiries- Hidden Gable Estate',
+            subject: `Inquiries- ${website || 'Unknown source'}`,
             text: `
                 Name: ${name}
                 Email: ${email}
                 Message: ${message}
             `,
             html: `
-                <h3>New Inquiry</h3>
+                <h3>New Inquiry from ${website}</h3>
                 <p><strong>Name:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Message:</strong> ${message}</p>
