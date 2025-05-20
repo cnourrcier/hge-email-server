@@ -1,10 +1,16 @@
 const nodemailer = require('nodemailer');
 
+const isDev = process.env.NODE_ENV === 'development';
+
+const emailAccount = isDev ? process.env.DEVRISE_GOOGLE_EMAIL_ACCOUNT : process.env.GOOGLE_EMAIL_ACCOUNT;
+const emailPassword = isDev ? process.env.DEVRISE_GOOGLE_APP_PASSWORD : process.env.GOOGLE_APP_PASSWORD;
+console.log(`Using email account: ${emailAccount}`);
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.GOOGLE_EMAIL_ACCOUNT, // Your Gmail address
-        pass: process.env.GOOGLE_APP_PASSWORD // Your Gmail app-specific password
+        user: emailAccount, // Your Gmail address
+        pass: emailPassword // Your Gmail app-specific password
     }
 });
 
@@ -13,8 +19,8 @@ const sendEmail = async (req, res) => {
         const { name, email, message, website } = req.body;
         // Email options
         const mailOptions = {
-            from: process.env.GOOGLE_EMAIL_ACCOUNT,
-            to: process.env.GOOGLE_EMAIL_ACCOUNT,
+            from: emailAccount,
+            to: emailAccount, // Receiving at the same address
             subject: `Inquiries- ${website || 'Unknown source'}`,
             text: `
                 Name: ${name}

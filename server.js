@@ -8,13 +8,20 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors({
-  origin: [
-      'http://localhost:5173', 
+const allowedOrigins = [
       'https://www.hiddengableestate.com',
       'https://summitlodgebigbear.com',
-  ]
+];
+
+if (process.env.NODE_ENV === 'development') {
+  allowedOrigins.push('http://localhost:5173');
+  allowedOrigins.push('http://localhost:5174');
+}
+
+app.use(cors({
+  origin: allowedOrigins
 }));
+
 app.use(express.json());
 
 app.post('/api/send-email', sendEmail);
