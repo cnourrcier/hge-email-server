@@ -9,8 +9,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const allowedOrigins = [
+      'https://hiddenestate.com',
       'https://hiddenestate.onrender.com',
-      'https://www.hiddengableestate.com',
+    //   'https://www.hiddengableestate.com',
       'https://summitlodgebigbear.com',
 ];
 

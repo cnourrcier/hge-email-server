@@ -2,8 +2,12 @@ const nodemailer = require('nodemailer');
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const emailAccount = isDev ? process.env.DEVRISE_GOOGLE_EMAIL_ACCOUNT : process.env.GOOGLE_EMAIL_ACCOUNT;
-const emailPassword = isDev ? process.env.DEVRISE_GOOGLE_APP_PASSWORD : process.env.GOOGLE_APP_PASSWORD;
+const emailAccount = isDev 
+    ? process.env.DEVRISE_GOOGLE_EMAIL_ACCOUNT 
+    : process.env.GOOGLE_EMAIL_ACCOUNT;
+const emailPassword = isDev 
+    ? process.env.DEVRISE_GOOGLE_APP_PASSWORD 
+    : process.env.GOOGLE_APP_PASSWORD;
 console.log(`Using email account: ${emailAccount}`);
 
 const transporter = nodemailer.createTransport({
